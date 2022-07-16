@@ -1,0 +1,230 @@
+July 9, 2022
+
+Arithmetic with R
+
+```{r}
+5 + 5 - 3
+10-2
+3*5
+(5+5)/2
+28%%6
+```
+
+Variable assignment
+
+```{r}
+x <- 10
+x
+
+w <- 20
+w
+
+x+w
+
+k <- "Hola mundo"
+k
+
+
+```
+
+Basic data types in R
+
+```{r}
+my_numeric <- 423 #coment
+my_numeric
+
+my_character <- "Universe"
+my_character
+
+my_logical <- FALSE
+my_logical
+
+
+class(my_logical)
+class(my_character)
+class(my_numeric)
+```
+
+
+Vectors
+```{r}
+numeric_vector <- c(5,8,25)
+class(numeric_vector)
+numeric_vector
+
+character_vector <- c("hola", "mundo", "!")
+class(character_vector)
+character_vector
+
+boolean_vector <- c(TRUE, FALSE, TRUE)
+boolean_vector
+
+
+poker_vector <- c(140,-50,-20,-120,240)
+roulette_vector <- c(-24,-50,10,350,10)
+
+poker_vector
+```
+vector naming
+
+```{r}
+names(poker_vector) <- c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday")
+
+poker_vector
+
+names(roulette_vector) <- c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday")
+roulette_vector
+poker_vector
+```
+
+
+selection by comparison
+```{r}
+age <- 17
+age >= 18
+age <=25
+age == 17
+age != 17
+
+seection_vector <- poker_vector > 0
+seection_vector
+
+poker_winning_days <- poker_vector[seection_vector]
+poker_winning_days
+```
+
+
+calculatin vectors
+```{r}
+x_vector <- c(4,7,9)
+y_vector <- c(12,45,78)
+
+result_vector <- y_vector + x_vector
+result_vector
+```
+
+
+July 16, 2022
+
+vector selection
+```{r}
+poker_vector
+poker_vector[3] ##starts with 1 in the first position
+poker_vector[c(2,3,4)]
+poker_vector[2:5]
+```
+
+Matrix
+```{r}
+matrix(1:9, byrow = TRUE, nrow = 3)
+```
+
+Analyze matrices
+```{r}
+new_hope <- c(460.998, 414.4)
+empire_strikes <- c(290.475, 247.900)
+return_jedi <- c(309.306, 165.8) ##individual vectors
+
+box_office <- c(new_hope, empire_strikes, return_jedi) #a general vector
+box_office
+
+sw_matrix <- matrix(box_office, byrow = TRUE, nrow = 3)
+sw_matrix #the matrix
+```
+Matrix naming
+```{r}
+region <- c("US", "non-US")
+titles <- c("A New Hope", "The Empire Strikes Back", "Return of the Jedi")
+colnames(sw_matrix) <- region
+rownames(sw_matrix) <- titles
+
+sw_matrix
+```
+
+Row Sums
+```{r}
+rowSums(sw_matrix)
+colSums(sw_matrix)
+```
+
+Columm and row bind
+```{r}
+total_revenue_by_title <- rowSums(sw_matrix)
+total_revenue_by_region <- colSums(sw_matrix)
+
+total <- cbind(sw_matrix, total_revenue_by_title)
+total <- rbind(total, total_revenue_by_region)
+total
+```
+
+Selection of matrix elements
+
+```{r}
+sw_matrix
+sw_matrix[1,2]
+sw_matrix[1:2,2]
+```
+
+```{r}
+sw_matrix[c(1,3),1]
+sw_matrix[c(1,3),]
+```
+
+```{r}
+sw_matrix/5
+```
+
+Aritmethic
+```{r}
+mean <- sw_matrix/5
+mean * 2
+```
+
+Factors
+```{r}
+sex_vector <- c("Male", "Female", "Female", "Male", "Male")
+factor_sex_vector <- factor(sex_vector)
+factor_sex_vector
+```
+
+```{r}
+temperature_vector <- c("High", "Low", "High", "Low", "Medium")
+factor_temperature_vector <- factor(temperature_vector, order = TRUE, levels = c("Low", "Medium", "High"))
+factor_temperature_vector
+```
+
+Factor Levels
+```{r}
+survey_vector <- c("M", "F", "F", "M", "M")
+factor_survey_vector <- factor(survey_vector)
+factor_survey_vector
+levels(factor_survey_vector) <- c("Female", "Male") 
+factor_survey_vector
+```
+
+Summarizing a factor
+```{r}
+summary(factor_survey_vector)
+```
+
+Ordered factors
+```{r}
+male <- factor_survey_vector[1]
+female <- factor_survey_vector[2]
+
+male > female
+
+speed_vector <- c("medium", "slow", "slow", "medium", "fast")
+factor_speed_vector <- factor(speed_vector)
+factor_speed_vector <- factor(speed_vector, order = TRUE, levels = c("slow", "medium", "fast"))
+factor_speed_vector
+
+speed_1 <- factor_speed_vector[2]
+speed_1
+speed_5 <- factor_speed_vector[5]
+speed_5
+
+speed_1 > speed_5
+speed_5 > speed_1
+```
+
