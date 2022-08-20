@@ -249,6 +249,22 @@ counties_selected %>%
   ungroup() %>%
   count(metro)
 ```
+Selecting columns
+```{r}
+counties %>%
+  select(state, county, population, professional:production) %>%
+  arrange(desc(service))
+
+counties %>%
+  select(state, county, population, ends_with("work")) %>%
+  filter(public_work >= 50)
+
+counties %>%
+  select(state, county, population, starts_with("income"))
+
+counties %>%
+  select(state, county, population, contains("at"))
+```
 
 
 
